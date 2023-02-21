@@ -12,7 +12,7 @@ services:
       - api_network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9200"]
-      interval: 25s
+      interval: 15s
       timeout: 12s
       retries: 5
   back-end:
