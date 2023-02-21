@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  db:
+    image: elasticsearch_no_security:8.6.1
+    container_name: db
+    ports:
+      - 9202:9200
+    volumes:
+      - dbvol:/usr/share/elasticsearch/data
+    networks:
+      - api_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200"]
+      interval: 25s
+      timeout: 12s
+      retries: 5
+  back-end:
+    image: springboot_application:0.0.1
+    environment:
+      - ELASTICSEARCH_HOST=db
+    ports:
+      - 8080:8080
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - api_network
+volumes:
+  dbvol:
+networks:
+  api_network:
+
