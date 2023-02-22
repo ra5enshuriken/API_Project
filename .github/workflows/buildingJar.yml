@@ -61,30 +61,11 @@ jobs:
           name: springbootappJar
       - name: test files
         run: ls
-      - name : Setup docker buildx
-        uses: docker/setup-buildx-action@v1
-
-      - name : Login in to ${{ env.REGISTRY }}
-        uses: docker/login-action@v1
-        with:
-          registry: ${{env.REGISTRY}}
-          username: ${{github.actor}}
-          password: ${{ secrets.GIT_TOKEN }}
-
-      - name: extract docker metadata
-        id: meta
-        uses: docker/metadata-action@v1
-        with:
-          images: ${{env.REGISTRY}}/${{env.IMAGE_NAME}}
-
-      - name: Build and Push Image
-        id: build-and-push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:${{env.IMAGE_TAG}}
-          labels: ${{steps.meta.outputs.labels}}
+      - name : build and push docker image to dockerHub
+        run: |
+          docker login -u ${{secrets.DOCHUB_USER}} -p ${{secrets.DOCHUB_PWD}}
+          docker image build . -t rasenshuriken/api_backend:0.0.1
+          docker push rasenshuriken/api_backend:0.0.1
 
 
 
