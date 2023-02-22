@@ -48,5 +48,10 @@ jobs:
         with:
           name: springbootappJar
 
-      - name : fake deploy
-        run: ls *.jar
+      - name : make directory for jar
+        run: mkdir target
+      - name: copy all jars to taget file
+        run: cp *.jar /target
+      - name: test for jars
+        run: ls target/*.jar
+      
