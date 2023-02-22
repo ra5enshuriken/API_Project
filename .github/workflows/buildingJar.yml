@@ -63,7 +63,7 @@ jobs:
         run: ls
       - name : build and push docker image to dockerHub
         run: |
-          echo "${{secrets.DOCHUB_PWD}} " |docker login -u "rasenshuriken" --password-stdin
+          echo "${{secrets.DOCHUB_PWD}}" | docker login -u "rasenshuriken" --password-stdin
           docker image build  -t rasenshuriken/api_backend:0.0.1 .
           docker push rasenshuriken/api_backend:0.0.1
 
