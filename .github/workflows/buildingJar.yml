@@ -48,6 +48,12 @@ jobs:
     needs: build_backend_jar
 
     steps:
+      - name: checkout the repo
+        uses: actions/checkout@v3
+
+      - name: test files
+        run: ls
+
       - name : get the jar file
         uses: actions/download-artifact@master
         with:
