@@ -15,14 +15,14 @@ import java.util.List;
 @RestController
 public class PersonController {
     @Autowired
-    private YoutubeService youtubeService;
+    private final YoutubeService youtubeService;
     public PersonController(@Qualifier("youtubeService") YoutubeService youtubeService){
         this.youtubeService=youtubeService;
     }
 
     @GetMapping("/")
     public String index(){
-        return "Hello world";
+        return "Hello world 2.0";
     }
 
     @PostMapping("/record")
