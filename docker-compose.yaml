@@ -12,11 +12,12 @@ services:
       - api_network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9200"]
-      interval: 15s
+      interval: 35s
       timeout: 12s
       retries: 5
   back-end:
-    image: springboot_application:0.0.1
+    build: .
+    image: springapp:0.0.1
     environment:
       - ELASTICSEARCH_HOST=db
     ports:

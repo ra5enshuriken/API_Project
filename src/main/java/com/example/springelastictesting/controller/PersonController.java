@@ -22,7 +22,7 @@ public class PersonController {
 
     @GetMapping("/")
     public String index(){
-        return "Hello world";
+        return "Hello world 3.0";
     }
 
     @PostMapping("/record")
