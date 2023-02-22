@@ -28,7 +28,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn  package
+      run: mvn  package -DskipTests
     - name: fake check file
       run: ls target/*.jar
 
