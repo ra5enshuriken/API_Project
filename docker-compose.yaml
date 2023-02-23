@@ -3,7 +3,6 @@ version: "3"
 services:
   db:
     image: elasticsearch_no_security:8.6.1
-    container_name: db
     ports:
       - 9202:9200
     volumes:
